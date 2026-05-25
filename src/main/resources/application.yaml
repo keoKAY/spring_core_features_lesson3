@@ -1,6 +1,14 @@
+app-info:
+  name: springCoreFeaturesApp
+  version: 1.0.0
+  developer: kk
+  domain: facebook.com
+  port: 9090
 
 spring:
   # enable the virtual thread support from jdk 21+
+  # optimize concurrent tasks from old tranditional thread
+  # tranditional = take a lot of cpu power per task
   threads:
     virtual:
       enabled: true
@@ -16,3 +24,5 @@ management:
       exposure:
         include: health,info,metrics,beans
       # include: '*' // Avoid using this on prod
+server:
+  port: "${app-info.port}"
