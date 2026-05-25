@@ -1,0 +1,18 @@
+
+spring:
+  # enable the virtual thread support from jdk 21+
+  threads:
+    virtual:
+      enabled: true
+  application:
+    name: spring-core-features
+
+# configuration for exposing endpoints of actuator
+#server:
+#  port: 9090
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,beans
+      # include: '*' // Avoid using this on prod
