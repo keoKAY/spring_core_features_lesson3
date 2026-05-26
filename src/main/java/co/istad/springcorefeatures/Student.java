@@ -1,13 +1,19 @@
 package co.istad.springcorefeatures;
 
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RestController;
 
-@Component("whateverBean")
-@Data
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
+    private int id;
     private String name;
     private String gender;
-    private int age;
+
 }
