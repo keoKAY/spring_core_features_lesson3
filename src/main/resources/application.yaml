@@ -1,9 +1,23 @@
-app-info:
+# actuator info part
+info:
   name: springCoreFeaturesApp
+  description: just a demo project for core features
   version: 1.0.0
-  developer: kk
+  author: kk
   domain: facebook.com
-  port: 9090
+
+# Work with the type-safe part
+app-config:
+  name: SpringBootApp
+  description: Test Description
+  version: 1.0.1
+  security:
+      jwt-secret: verysecured123
+      expiration: 365
+  kafka:
+      topic: student-topic
+      retry-count: 3
+
 
 spring:
   # enable the virtual thread support from jdk 21+
@@ -19,10 +33,14 @@ spring:
 #server:
 #  port: 9090
 management:
+  # used in order to allow getting information about our app
+  info:
+    env:
+      enabled: true
   endpoints:
     web:
       exposure:
         include: health,info,metrics,beans
       # include: '*' // Avoid using this on prod
 server:
-  port: "${app-info.port}"
+  port: 9090

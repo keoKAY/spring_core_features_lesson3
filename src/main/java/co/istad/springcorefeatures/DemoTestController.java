@@ -1,5 +1,6 @@
 package co.istad.springcorefeatures;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,21 +12,22 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 public class DemoTestController {
+    // Constructor injection
+    private final AppProperties appProperties;
+    public DemoTestController(AppProperties appProperties) {
+        this.appProperties = appProperties;
+    }
 
-    // Get the values from the application.yaml file
-    // for dynamic configuration
+    @GetMapping("/config")
+    public Map<String, Object> config(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", appProperties.getName());
+        map.put("version", appProperties.getVersion());
+        map.put("description", appProperties.getDescription());
+        map.put("jwtSecret", appProperties.getSecurity().getJwtSecret());
+        map.put("jwtExpiration", appProperties.getSecurity().getExpiration());
 
-    @Value("${app-info.name}")
-    private String appName;
-    @Value("${app-info.domain}")
-    private String domain;
-
-
-    @GetMapping("/hello")
-    public Map<String,Object> hello() {
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("app-info.name", appName);
-        map.put("domain", domain);
+        map.put("Kafka Topic: ", appProperties.getKafka().getTopic());
         return map;
     }
 
