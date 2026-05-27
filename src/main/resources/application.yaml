@@ -43,4 +43,4 @@ management:
         include: health,info,metrics,beans
       # include: '*' // Avoid using this on prod
 server:
-  port: 9090
+  port: 8080

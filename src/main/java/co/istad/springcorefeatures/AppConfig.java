@@ -5,8 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+
+// Configuration  = Security Configuration
 @Configuration
 public class AppConfig {
+
+
     @Bean("student1")
     public Student student(){
         return new Student();

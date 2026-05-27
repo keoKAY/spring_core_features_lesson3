@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // meaning it work with database
 @Repository
@@ -20,4 +21,15 @@ public class StudentRepository {
  public List<Student> getStudents(){
   return students;
  }
+
+ // Optional = use mostly for searching tasks when there is
+ // chance of you getting NULL
+ // prevent NULLPOINTER EXCEPTION
+ public Optional<Student> findStudentByID(int id){
+     return  students.stream()
+             .filter(stu -> stu.getId() == id )
+             .findFirst();
+
+ }
+
 }
